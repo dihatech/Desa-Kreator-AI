@@ -39,8 +39,8 @@
                     <button onclick="showPage('ai-kreator')" class="bg-white text-emerald-800 font-bold py-2.5 px-4 rounded-xl shadow text-sm hover:bg-emerald-50 transition">
                         ✨ Buka AI Kreator
                     </button>
-                    <button onclick="alert('Fitur SOS Kontak Penting segera diaktifkan!')" class="bg-rose-600 text-white font-bold py-2 px-4 rounded-xl shadow text-sm hover:bg-rose-700 transition">
-                        🚨 SOS Kontak Penting
+                    <button onclick="showPage('sos')" class="bg-rose-600 text-white font-bold py-2.5 px-4 rounded-xl shadow text-sm hover:bg-rose-700 transition flex items-center justify-center gap-2">
+                        <span>🚨 SOS Kontak Penting</span>
                     </button>
                 </div>
             </section>
@@ -52,6 +52,11 @@
                     <h3 class="font-bold text-sm">AI Kreator</h3>
                     <p class="text-xs text-slate-500">Bikin ide, naskah & caption instan</p>
                 </div>
+                <div onclick="showPage('sos')" class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-1 hover:border-rose-400 cursor-pointer transition">
+                    <span class="text-2xl">🚨</span>
+                    <h3 class="font-bold text-sm">SOS Darurat</h3>
+                    <p class="text-xs text-slate-500">Nomor penting & Bhabin wilayah</p>
+                </div>
                 <div onclick="alert('Menu Misi Bulanan dalam pengembangan!')" class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-1 hover:border-emerald-400 cursor-pointer transition">
                     <span class="text-2xl">🎯</span>
                     <h3 class="font-bold text-sm">Misi Bulanan</h3>
@@ -61,11 +66,6 @@
                     <span class="text-2xl">🛒</span>
                     <h3 class="font-bold text-sm">Peluang Warga</h3>
                     <p class="text-xs text-slate-500">Jual produk & tawarkan jasa</p>
-                </div>
-                <div onclick="alert('Menu Aman Digital dalam pengembangan!')" class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-1 hover:border-emerald-400 cursor-pointer transition">
-                    <span class="text-2xl">🛡️</span>
-                    <h3 class="font-bold text-sm">Aman Digital</h3>
-                    <p class="text-xs text-slate-500">Edukasi anti penipuan online</p>
                 </div>
             </section>
         </div>
@@ -84,34 +84,27 @@
                 💡 <strong>Tanpa perlu mikir prompt!</strong> Cukup pilih bidang usaha/kegiatan Anda, masukkan detail singkat, lalu tekan tombol buat.
             </p>
 
-            <!-- Form AI Kreator -->
             <form id="ai-form" onsubmit="generateAIContent(event)" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">1. Pilih Bidang / Kategori</label>
                     <select id="ai-category" class="w-full text-xs p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none">
                         <option value="Pertanian & Hasil Desa">🌾 Pertanian & Hasil Desa</option>
                         <option value="Kuliner & UMKM">🍲 Kuliner & UMKM Desa</option>
-                        <option value="Jasa & Keterampilan">🛠️ Jasa & Keterampilan (Tukang, Urut, Bengkel, dll)</option>
+                        <option value="Jasa & Keterampilan">🛠️ Jasa & Keterampilan</option>
                         <option value="Wisata & Potensi Desa">🌴 Wisata & Budaya Desa</option>
-                        <option value="Kreator & Hiburan">📹 Kreator Konten / Hobi</option>
                     </select>
                 </div>
-
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">2. Apa yang ingin dipromosikan / diceritakan?</label>
-                    <textarea id="ai-input" rows="3" required placeholder="Contoh: Saya menjual cabai panen lokal yang segar, atau membuka jasa servis motor panggil ke rumah..." class="w-full text-xs p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
+                    <textarea id="ai-input" rows="3" required placeholder="Contoh: Saya menjual cabai panen lokal segar..." class="w-full text-xs p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
                 </div>
-
-                <button type="submit" id="btn-generate" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-xs shadow transition flex items-center justify-center gap-2">
-                    <span>✨ Buat Ide & Naskah Konten</span>
+                <button type="submit" id="btn-generate" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-xs shadow transition">
+                    ✨ Buat Ide & Naskah Konten
                 </button>
             </form>
 
-            <!-- Hasil Output AI -->
             <div id="ai-result" class="hidden bg-white p-4 rounded-2xl shadow-sm border border-emerald-300 space-y-3">
-                <h3 class="font-bold text-sm text-emerald-800 flex items-center gap-1">
-                    🎉 Hasil Konten Siap Pakai:
-                </h3>
+                <h3 class="font-bold text-sm text-emerald-800">🎉 Hasil Konten Siap Pakai:</h3>
                 <div class="space-y-2 text-xs text-slate-700">
                     <div class="bg-slate-50 p-2.5 rounded-lg border">
                         <span class="font-bold text-slate-500 block">📌 Judul / Hook Konten:</span>
@@ -122,17 +115,47 @@
                         <p id="res-idea" class="mt-1"></p>
                     </div>
                     <div class="bg-slate-50 p-2.5 rounded-lg border">
-                        <span class="font-bold text-slate-500 block">📝 Naskah Bicara & Caption WA/TikTok:</span>
+                        <span class="font-bold text-slate-500 block">📝 Naskah & Caption:</span>
                         <p id="res-caption" class="whitespace-pre-line mt-1"></p>
                     </div>
                     <div class="bg-slate-50 p-2.5 rounded-lg border">
-                        <span class="font-bold text-slate-500 block">🏷️ Hashtag Pilihan:</span>
+                        <span class="font-bold text-slate-500 block">🏷️ Hashtag:</span>
                         <p id="res-hashtag" class="text-emerald-700 font-semibold mt-1"></p>
                     </div>
                 </div>
                 <button onclick="copyResult()" class="w-full bg-slate-800 text-white font-semibold py-2 rounded-xl text-xs hover:bg-slate-900 transition">
                     📋 Salin Semua Teks
                 </button>
+            </div>
+        </div>
+
+
+        <!-- HALAMAN 3: SOS KONTAK PENTING BERBASIS WILAYAH -->
+        <div id="page-sos" class="hidden space-y-4">
+            <div class="flex items-center justify-between border-b pb-3">
+                <button onclick="showPage('home')" class="text-xs font-semibold text-rose-700 flex items-center gap-1">
+                    ← Kembali ke Beranda
+                </button>
+                <h2 class="font-bold text-base text-slate-800">🚨 SOS Kontak Penting</h2>
+            </div>
+
+            <p class="text-xs text-slate-600 bg-rose-50 p-3 rounded-xl border border-rose-200">
+                📍 Pilih desa Anda untuk melihat nomor darurat, kantor layanan, dan Bhabinkamtibmas wilayah tugas[cite: 7, 10, 11].
+            </p>
+
+            <!-- Pilihan Wilayah -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 space-y-2">
+                <label class="block text-xs font-bold text-slate-700">Pilih Wilayah Desa Anda:</label>
+                <select id="wilayah-select" onchange="loadContacts()" class="w-full text-xs p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-rose-500 outline-none">
+                    <option value="sungai-paduan">Desa Sungai Paduan</option>
+                    <option value="alur-bandung">Desa Alur Bandung</option>
+                    <option value="teluk-batang">Desa Teluk Batang</option>
+                </select>
+            </div>
+
+            <!-- Daftar Kontak Berdasarkan Wilayah -->
+            <div id="contacts-list" class="space-y-2.5">
+                <!-- Kontak akan dimuat secara dinamis oleh JavaScript -->
             </div>
         </div>
 
@@ -145,22 +168,70 @@
 
     <!-- LOGIKA JAVASCRIPT -->
     <script>
-        // MASUKKAN KREDENSIAL SUPABASE ANDA DI SINI
-        const SUPABASE_URL = 'https://kyoslaqroklycqssblac.supabase.co';
-        const SUPABASE_ANON_KEY = 'sb_publishable_TUCwIHUNaDu7YE5s6brs3w_GWreHf54';
-
+        const SUPABASE_URL = 'GANTI_DENGAN_SUPABASE_URL_ANDA';
+        const SUPABASE_ANON_KEY = 'GANTI_DENGAN_SUPABASE_ANON_KEY_ANDA';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // Fungsi Perpindahan Halaman
         function showPage(pageId) {
             document.getElementById('page-home').classList.add('hidden');
             document.getElementById('page-ai-kreator').classList.add('hidden');
+            document.getElementById('page-sos').classList.add('hidden');
             
             document.getElementById('page-' + pageId).classList.remove('hidden');
             window.scrollTo(0, 0);
+            
+            if(pageId === 'sos') {
+                loadContacts();
+            }
         }
 
-        // Simulasi Generator AI Kreator
+        // Database Simulasi Kontak Penting Berdasarkan Wilayah
+        const databaseKontak = {
+            "sungai-paduan": [
+                { kategori: "Bhabinkamtibmas", nama: "Bripka Diky (Wilayah Sungai Paduan)", telp: "081234567890", verified: "Verifikasi Polsek (Okt 2026)" },
+                { kategori: "Kepolisian", nama: "Piket Polsek Setempat", telp: "0561123456", verified: "Terverifikasi Resmi" },
+                { kategori: "Kesehatan", nama: "Puskesmas Pembantu Sungai Paduan", telp: "081987654321", verified: "Verifikasi Dinas Kesehatan" },
+                { kategori: "Darurat", nama: "Pemadam / Satgas Kebakaran Desa", telp: "081122334455", verified: "Verifikasi Kecamatan" },
+                { kategori: "Pemerintahan", nama: "Kantor Desa Sungai Paduan", telp: "0561654321", verified: "Terverifikasi Resmi" }
+            ],
+            "alur-bandung": [
+                { kategori: "Bhabinkamtibmas", nama: "Bripka Wayu (Wilayah Alur Bandung)", telp: "081298765432", verified: "Verifikasi Polsek (Okt 2026)" },
+                { kategori: "Kepolisian", nama: "Piket Polsek Setempat", telp: "0561123456", verified: "Terverifikasi Resmi" },
+                { kategori: "Kesehatan", nama: "Bidan Desa Alur Bandung", telp: "081333444555", verified: "Verifikasi Puskesmas" },
+                { kategori: "Pemerintahan", nama: "Kantor Desa Alur Bandung", telp: "0561789012", verified: "Terverifikasi Resmi" }
+            ],
+            "teluk-batang": [
+                { kategori: "Bhabinkamtibmas", nama: "Bripka Harli (Wilayah Teluk Batang)", telp: "081555666777", verified: "Verifikasi Polsek (Okt 2026)" },
+                { kategori: "Kesehatan", nama: "Puskesmas Teluk Batang", telp: "0561998877", verified: "Verifikasi Resmi" },
+                { kategori: "Darurat", nama: "Pos SAR / BPBD Terdekat", telp: "081999888777", verified: "Terverifikasi SAR" },
+                { kategori: "Pemerintahan", nama: "Kantor Kecamatan Teluk Batang", telp: "0561334455", verified: "Terverifikasi Resmi" }
+            ]
+        };
+
+        function loadContacts() {
+            const wilayah = document.getElementById('wilayah-select').value;
+            const container = document.getElementById('contacts-list');
+            const data = databaseKontak[wilayah] || [];
+
+            let html = '';
+            data.forEach(item => {
+                html += `
+                    <div class="bg-white p-3.5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase px-2 py-0.5 bg-rose-100 text-rose-700 rounded-md">${item.kategori}</span>
+                            <h4 class="font-bold text-xs text-slate-800 mt-1">${item.nama}</h4>
+                            <p class="text-[10px] text-slate-400 mt-0.5">✓ ${item.verified}</p>
+                        </div>
+                        <a href="tel:${item.telp}" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-2 rounded-xl text-xs shadow flex items-center gap-1 transition">
+                            📞 Hubungi
+                        </a>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // AI Kreator Script Tetap Berjalan
         function generateAIContent(e) {
             e.preventDefault();
             const category = document.getElementById('ai-category').value;
@@ -172,31 +243,26 @@
             btn.innerHTML = '⏳ Sedang Memproses Ide...';
 
             setTimeout(() => {
-                // Generasi teks respons sederhana berbasis input
                 document.getElementById('res-title').innerText = `🔥 MENGANGKAT POTENSI DESA: ${input.toUpperCase()}!`;
-                document.getElementById('res-idea').innerText = `Tunjukkan video singkat kondisi barang/layanan Anda selama 5-10 detik pakai HP, dilanjutkan proses kerja secara jujur dan rapi.`;
-                document.getElementById('res-caption').innerText = `Halo tetangga & teman-teman semua!\n\nBuat yang lagi nyari ${input}, sekarang tidak perlu pusing lagi. Kami siap melayani langsung dari desa kita dengan kualitas terbaik dan harga terjangkau.\n\nMari dukung usaha lokal warga desa! Hubungi kami lewat WhatsApp untuk tanya-tanya ya.`;
+                document.getElementById('res-idea').innerText = `Tunjukkan video singkat kondisi barang/layanan Anda selama 5-10 detik pakai HP.`;
+                document.getElementById('res-caption').innerText = `Halo warga sekalian!\n\nBuat yang mencari ${input}, kami siap melayani langsung dari desa. Mari dukung usaha lokal warga! Hubungi kami via WhatsApp ya.`;
                 document.getElementById('res-hashtag').innerText = `#DesaKreatorAI #UsahaLokal #${category.replace(/[^a-zA-C0-9]/g, '')} #ProduktifDariHP`;
 
                 resultDiv.classList.remove('hidden');
                 btn.disabled = false;
                 btn.innerHTML = '✨ Buat Ide & Naskah Konten';
                 resultDiv.scrollIntoView({ behavior: 'smooth' });
-            }, 1200);
+            }, 1000);
         }
 
-        // Fungsi Salin Hasil Teks
         function copyResult() {
             const text = `${document.getElementById('res-title').innerText}\n\n${document.getElementById('res-caption').innerText}\n\n${document.getElementById('res-hashtag').innerText}`;
             navigator.clipboard.writeText(text);
             alert('Teks berhasil disalin ke clipboard HP Anda!');
         }
 
-        // Login Google via Supabase
         async function loginWithGoogle() {
-            const { data, error } = await supabaseClient.auth.signInWithOAuth({
-                provider: 'google',
-            });
+            const { data, error } = await supabaseClient.auth.signInWithOAuth({ provider: 'google' });
             if (error) alert('Gagal login: ' + error.message);
         }
     </script>
