@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desa Kreator AI - Dari HP, Jadi Produktif</title>
-    <!-- Tailwind CSS untuk Desain Cepat & Responsif -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Supabase JS Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -14,12 +14,11 @@
     <!-- Header / Navbar -->
     <header class="bg-emerald-600 text-white shadow-md sticky top-0 z-50">
         <div class="max-w-md mx-auto px-4 py-3 flex justify-between items-center">
-            <div>
+            <div onclick="showPage('home')" class="cursor-pointer">
                 <h1 class="font-bold text-lg leading-tight">Desa Kreator AI</h1>
                 <p class="text-xs text-emerald-100">Dari HP, Jadi Produktif.</p>
             </div>
             <div id="auth-container">
-                <!-- Tombol Login akan diatur oleh JavaScript -->
                 <button onclick="loginWithGoogle()" class="bg-white text-emerald-700 text-xs font-semibold px-3 py-1.5 rounded-full shadow hover:bg-emerald-50 transition">
                     Masuk
                 </button>
@@ -27,100 +26,179 @@
         </div>
     </header>
 
-    <!-- Konten Utama -->
-    <main class="max-w-md mx-auto px-4 py-6 w-full space-y-6 flex-grow">
-        
-        <!-- Hero Section -->
-        <section class="bg-gradient-to-br from-emerald-500 to-teal-700 text-white p-6 rounded-2xl shadow-lg text-center space-y-3">
-            <h2 class="text-2xl font-black leading-snug">Setiap Orang Punya Cerita.<br>Setiap Keterampilan Punya Peluang.</h2>
-            <p class="text-sm text-emerald-100">Pusat belajar, berkarya, berbagi, dan membuka peluang ekonomi warga berbasis teknologi AI.</p>
-            <div class="pt-2 flex flex-col gap-2">
-                <a href="#ai-kreator" class="bg-white text-emerald-800 font-bold py-2.5 px-4 rounded-xl shadow text-sm hover:bg-emerald-50 transition">
-                    ✨ Buka AI Kreator
-                </a>
-                <a href="#sos-darurat" class="bg-rose-600 text-white font-bold py-2 px-4 rounded-xl shadow text-sm hover:bg-rose-700 transition">
-                    🚨 SOS Kontak Penting
-                </a>
-            </div>
-        </section>
+    <!-- KONTEN UTAMA -->
+    <main class="max-w-md mx-auto px-4 py-6 w-full flex-grow">
 
-        <!-- Menu Utama Singkat -->
-        <section class="grid grid-cols-2 gap-3">
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-1 hover:border-emerald-300 transition">
-                <span class="text-2xl">💡</span>
-                <h3 class="font-bold text-sm">AI Kreator</h3>
-                <p class="text-xs text-slate-500">Bikin ide, naskah & caption instan</p>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-1 hover:border-emerald-300 transition">
-                <span class="text-2xl">🎯</span>
-                <h3 class="font-bold text-sm">Misi Bulanan</h3>
-                <p class="text-xs text-slate-500">Ikuti misi, kumpulkan poin & badge</p>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-1 hover:border-emerald-300 transition">
-                <span class="text-2xl">🛒</span>
-                <h3 class="font-bold text-sm">Peluang Warga</h3>
-                <p class="text-xs text-slate-500">Jual produk, jasa & keterampilan</p>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-1 hover:border-emerald-300 transition">
-                <span class="text-2xl">🛡️</span>
-                <h3 class="font-bold text-sm">Aman Digital</h3>
-                <p class="text-xs text-slate-500">Detektif anti-penipuan online</p>
-            </div>
-        </section>
+        <!-- HALAMAN 1: BERANDA -->
+        <div id="page-home" class="space-y-6">
+            <!-- Hero Section -->
+            <section class="bg-gradient-to-br from-emerald-500 to-teal-700 text-white p-6 rounded-2xl shadow-lg text-center space-y-3">
+                <h2 class="text-2xl font-black leading-snug">Setiap Orang Punya Cerita.<br>Setiap Keterampilan Punya Peluang.</h2>
+                <p class="text-sm text-emerald-100">Pusat belajar, berkarya, berbagi, dan membuka peluang ekonomi warga berbasis teknologi AI.</p>
+                <div class="pt-2 flex flex-col gap-2">
+                    <button onclick="showPage('ai-kreator')" class="bg-white text-emerald-800 font-bold py-2.5 px-4 rounded-xl shadow text-sm hover:bg-emerald-50 transition">
+                        ✨ Buka AI Kreator
+                    </button>
+                    <button onclick="alert('Fitur SOS Kontak Penting segera diaktifkan!')" class="bg-rose-600 text-white font-bold py-2 px-4 rounded-xl shadow text-sm hover:bg-rose-700 transition">
+                        🚨 SOS Kontak Penting
+                    </button>
+                </div>
+            </section>
 
-        <!-- Status Pengguna / Profil Singkat (Tersembunyi jika belum login) -->
-        <section id="user-profile-section" class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 hidden">
-            <h3 class="font-bold text-sm text-slate-700 mb-1">Status Akun Anda</h3>
-            <p id="user-email" class="text-xs text-slate-500 mb-3">-</p>
-            <button onclick="logout()" class="text-xs text-rose-600 font-semibold hover:underline">Keluar Akun</button>
-        </section>
+            <!-- Grid Menu Utama -->
+            <section class="grid grid-cols-2 gap-3">
+                <div onclick="showPage('ai-kreator')" class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-1 hover:border-emerald-400 cursor-pointer transition">
+                    <span class="text-2xl">💡</span>
+                    <h3 class="font-bold text-sm">AI Kreator</h3>
+                    <p class="text-xs text-slate-500">Bikin ide, naskah & caption instan</p>
+                </div>
+                <div onclick="alert('Menu Misi Bulanan dalam pengembangan!')" class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-1 hover:border-emerald-400 cursor-pointer transition">
+                    <span class="text-2xl">🎯</span>
+                    <h3 class="font-bold text-sm">Misi Bulanan</h3>
+                    <p class="text-xs text-slate-500">Ikuti misi & kumpulkan poin</p>
+                </div>
+                <div onclick="alert('Menu Peluang Warga dalam pengembangan!')" class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-1 hover:border-emerald-400 cursor-pointer transition">
+                    <span class="text-2xl">🛒</span>
+                    <h3 class="font-bold text-sm">Peluang Warga</h3>
+                    <p class="text-xs text-slate-500">Jual produk & tawarkan jasa</p>
+                </div>
+                <div onclick="alert('Menu Aman Digital dalam pengembangan!')" class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-1 hover:border-emerald-400 cursor-pointer transition">
+                    <span class="text-2xl">🛡️</span>
+                    <h3 class="font-bold text-sm">Aman Digital</h3>
+                    <p class="text-xs text-slate-500">Edukasi anti penipuan online</p>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- HALAMAN 2: AI KREATOR -->
+        <div id="page-ai-kreator" class="hidden space-y-5">
+            <div class="flex items-center justify-between border-b pb-3">
+                <button onclick="showPage('home')" class="text-xs font-semibold text-emerald-700 flex items-center gap-1">
+                    ← Kembali ke Beranda
+                </button>
+                <h2 class="font-bold text-base text-slate-800">✨ AI Kreator</h2>
+            </div>
+
+            <p class="text-xs text-slate-600 bg-emerald-50 p-3 rounded-xl border border-emerald-200">
+                💡 <strong>Tanpa perlu mikir prompt!</strong> Cukup pilih bidang usaha/kegiatan Anda, masukkan detail singkat, lalu tekan tombol buat.
+            </p>
+
+            <!-- Form AI Kreator -->
+            <form id="ai-form" onsubmit="generateAIContent(event)" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">1. Pilih Bidang / Kategori</label>
+                    <select id="ai-category" class="w-full text-xs p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <option value="Pertanian & Hasil Desa">🌾 Pertanian & Hasil Desa</option>
+                        <option value="Kuliner & UMKM">🍲 Kuliner & UMKM Desa</option>
+                        <option value="Jasa & Keterampilan">🛠️ Jasa & Keterampilan (Tukang, Urut, Bengkel, dll)</option>
+                        <option value="Wisata & Potensi Desa">🌴 Wisata & Budaya Desa</option>
+                        <option value="Kreator & Hiburan">📹 Kreator Konten / Hobi</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">2. Apa yang ingin dipromosikan / diceritakan?</label>
+                    <textarea id="ai-input" rows="3" required placeholder="Contoh: Saya menjual cabai panen lokal yang segar, atau membuka jasa servis motor panggil ke rumah..." class="w-full text-xs p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
+                </div>
+
+                <button type="submit" id="btn-generate" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-xs shadow transition flex items-center justify-center gap-2">
+                    <span>✨ Buat Ide & Naskah Konten</span>
+                </button>
+            </form>
+
+            <!-- Hasil Output AI -->
+            <div id="ai-result" class="hidden bg-white p-4 rounded-2xl shadow-sm border border-emerald-300 space-y-3">
+                <h3 class="font-bold text-sm text-emerald-800 flex items-center gap-1">
+                    🎉 Hasil Konten Siap Pakai:
+                </h3>
+                <div class="space-y-2 text-xs text-slate-700">
+                    <div class="bg-slate-50 p-2.5 rounded-lg border">
+                        <span class="font-bold text-slate-500 block">📌 Judul / Hook Konten:</span>
+                        <p id="res-title" class="font-semibold text-slate-900 mt-1"></p>
+                    </div>
+                    <div class="bg-slate-50 p-2.5 rounded-lg border">
+                        <span class="font-bold text-slate-500 block">🎬 Ide Video / Foto HP:</span>
+                        <p id="res-idea" class="mt-1"></p>
+                    </div>
+                    <div class="bg-slate-50 p-2.5 rounded-lg border">
+                        <span class="font-bold text-slate-500 block">📝 Naskah Bicara & Caption WA/TikTok:</span>
+                        <p id="res-caption" class="whitespace-pre-line mt-1"></p>
+                    </div>
+                    <div class="bg-slate-50 p-2.5 rounded-lg border">
+                        <span class="font-bold text-slate-500 block">🏷️ Hashtag Pilihan:</span>
+                        <p id="res-hashtag" class="text-emerald-700 font-semibold mt-1"></p>
+                    </div>
+                </div>
+                <button onclick="copyResult()" class="w-full bg-slate-800 text-white font-semibold py-2 rounded-xl text-xs hover:bg-slate-900 transition">
+                    📋 Salin Semua Teks
+                </button>
+            </div>
+        </div>
 
     </main>
 
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-400">
-        <p>Desa Kreator AI V1.2 • Belajar • Berkarya • Berpeluang</p>
+        <p>Desa Kreator AI V1.2 &bull; Dari HP, Jadi Produktif</p>
     </footer>
 
-    <!-- Skrip Konfigurasi Supabase -->
+    <!-- LOGIKA JAVASCRIPT -->
     <script>
         // MASUKKAN KREDENSIAL SUPABASE ANDA DI SINI
-        const SUPABASE_URL = 'https://wjeyyorrlryxpzjulsma.supabase.co';
-        const SUPABASE_ANON_KEY = 'sb_publishable_oOin7aQ9jNbb30S714VbZQ_AUuwjXTf';
+        const SUPABASE_URL = 'https://kyoslaqroklycqssblac.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_TUCwIHUNaDu7YE5s6brs3w_GWreHf54';
 
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // Fungsi Login Google
+        // Fungsi Perpindahan Halaman
+        function showPage(pageId) {
+            document.getElementById('page-home').classList.add('hidden');
+            document.getElementById('page-ai-kreator').classList.add('hidden');
+            
+            document.getElementById('page-' + pageId).classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // Simulasi Generator AI Kreator
+        function generateAIContent(e) {
+            e.preventDefault();
+            const category = document.getElementById('ai-category').value;
+            const input = document.getElementById('ai-input').value;
+            const btn = document.getElementById('btn-generate');
+            const resultDiv = document.getElementById('ai-result');
+
+            btn.disabled = true;
+            btn.innerHTML = '⏳ Sedang Memproses Ide...';
+
+            setTimeout(() => {
+                // Generasi teks respons sederhana berbasis input
+                document.getElementById('res-title').innerText = `🔥 MENGANGKAT POTENSI DESA: ${input.toUpperCase()}!`;
+                document.getElementById('res-idea').innerText = `Tunjukkan video singkat kondisi barang/layanan Anda selama 5-10 detik pakai HP, dilanjutkan proses kerja secara jujur dan rapi.`;
+                document.getElementById('res-caption').innerText = `Halo tetangga & teman-teman semua!\n\nBuat yang lagi nyari ${input}, sekarang tidak perlu pusing lagi. Kami siap melayani langsung dari desa kita dengan kualitas terbaik dan harga terjangkau.\n\nMari dukung usaha lokal warga desa! Hubungi kami lewat WhatsApp untuk tanya-tanya ya.`;
+                document.getElementById('res-hashtag').innerText = `#DesaKreatorAI #UsahaLokal #${category.replace(/[^a-zA-C0-9]/g, '')} #ProduktifDariHP`;
+
+                resultDiv.classList.remove('hidden');
+                btn.disabled = false;
+                btn.innerHTML = '✨ Buat Ide & Naskah Konten';
+                resultDiv.scrollIntoView({ behavior: 'smooth' });
+            }, 1200);
+        }
+
+        // Fungsi Salin Hasil Teks
+        function copyResult() {
+            const text = `${document.getElementById('res-title').innerText}\n\n${document.getElementById('res-caption').innerText}\n\n${document.getElementById('res-hashtag').innerText}`;
+            navigator.clipboard.writeText(text);
+            alert('Teks berhasil disalin ke clipboard HP Anda!');
+        }
+
+        // Login Google via Supabase
         async function loginWithGoogle() {
             const { data, error } = await supabaseClient.auth.signInWithOAuth({
                 provider: 'google',
             });
-            if (error) {
-                alert('Gagal login: ' + error.message);
-            }
+            if (error) alert('Gagal login: ' + error.message);
         }
-
-        // Fungsi Logout
-        async function logout() {
-            await supabaseClient.auth.signOut();
-            location.reload();
-        }
-
-        // Cek Sesi Login Saat Halaman Dimuat
-        async function checkUserSession() {
-            const { data: { session } } = await supabaseClient.auth.getSession();
-            const authContainer = document.getElementById('auth-container');
-            const profileSection = document.getElementById('user-profile-section');
-            const userEmailText = document.getElementById('user-email');
-
-            if (session) {
-                authContainer.innerHTML = `<span class="text-xs bg-emerald-700 px-2.5 py-1 rounded-full text-white">Online</span>`;
-                profileSection.classList.remove('hidden');
-                userEmailText.innerText = session.user.email;
-            }
-        }
-
-        checkUserSession();
     </script>
 </body>
 </html>
