@@ -140,7 +140,7 @@
             </div>
 
             <p class="text-xs text-slate-600 bg-rose-50 p-3 rounded-xl border border-rose-200">
-                📍 Pilih desa Anda untuk melihat nomor darurat, kantor layanan, dan Bhabinkamtibmas wilayah tugas[cite: 7, 10, 11].
+                📍 Pilih desa Anda untuk melihat nomor darurat, kantor layanan, dan Bhabinkamtibmas wilayah tugas.
             </p>
 
             <!-- Pilihan Wilayah -->
@@ -168,10 +168,39 @@
 
     <!-- LOGIKA JAVASCRIPT -->
     <script>
-        const SUPABASE_URL = 'GANTI_DENGAN_SUPABASE_URL_ANDA';
-        const SUPABASE_ANON_KEY = 'GANTI_DENGAN_SUPABASE_ANON_KEY_ANDA';
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Database Kontak Dideklarasikan Paling Atas Agar Tidak Error
+        const databaseKontak = {
+            "sungai-paduan": [
+                { kategori: "Bhabinkamtibmas", nama: "Bripka Diky (Wilayah Sungai Paduan)", telp: "081234567890", verified: "Verifikasi Polsek (Okt 2026)" },
+                { kategori: "Kepolisian", nama: "Piket Polsek Setempat", telp: "0561123456", verified: "Terverifikasi Resmi" },
+                { kategori: "Kesehatan", nama: "Puskesmas Pembantu Sungai Paduan", telp: "081987654321", verified: "Verifikasi Dinas Kesehatan" },
+                { kategori: "Darurat", nama: "Pemadam / Satgas Kebakaran Desa", telp: "081122334455", verified: "Verifikasi Kecamatan" },
+                { kategori: "Pemerintahan", nama: "Kantor Desa Sungai Paduan", telp: "0561654321", verified: "Terverifikasi Resmi" }
+            ],
+            "alur-bandung": [
+                { kategori: "Bhabinkamtibmas", nama: "Bripka Wahyu (Wilayah Alur Bandung)", telp: "081298765432", verified: "Verifikasi Polsek (Okt 2026)" },
+                { kategori: "Kepolisian", nama: "Piket Polsek Setempat", telp: "0561123456", verified: "Terverifikasi Resmi" },
+                { kategori: "Kesehatan", nama: "Bidan Desa Alur Bandung", telp: "081333444555", verified: "Verifikasi Puskesmas" },
+                { kategori: "Pemerintahan", nama: "Kantor Desa Alur Bandung", telp: "0561789012", verified: "Terverifikasi Resmi" }
+            ],
+            "teluk-batang": [
+                { kategori: "Bhabinkamtibmas", nama: "Britu Harli (Wilayah Teluk Batang)", telp: "081555666777", verified: "Verifikasi Polsek (Okt 2026)" },
+                { kategori: "Kesehatan", nama: "Puskesmas Teluk Batang", telp: "0561998877", verified: "Verifikasi Resmi" },
+                { kategori: "Darurat", nama: "Pos SAR / BPBD Terdekat", telp: "081999888777", verified: "Terverifikasi SAR" },
+                { kategori: "Pemerintahan", nama: "Kantor Kecamatan Teluk Batang", telp: "0561334455", verified: "Terverifikasi Resmi" }
+            ]
+        };
 
+        // Inisialisasi Supabase dengan Pengaman URL Valid
+        const SUPABASE_URL = 'https://kyoslaqroklycqssblac.supabase.co'; // Ganti dengan Project URL asli dari Supabase
+        const SUPABASE_ANON_KEY = 'sb_publishable_TUCwIHUNaDu7YE5s6brs3w_GWreHf54';                 // Ganti dengan Anon Key asli dari Supabase
+        let supabaseClient = null;
+
+        if (SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('YOUR_SUPABASE_PROJECT_ID')) {
+            supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        }
+
+        // Fungsi Navigasi Halaman
         function showPage(pageId) {
             document.getElementById('page-home').classList.add('hidden');
             document.getElementById('page-ai-kreator').classList.add('hidden');
@@ -185,32 +214,13 @@
             }
         }
 
-        // Database Simulasi Kontak Penting Berdasarkan Wilayah
-        const databaseKontak = {
-            "sungai-paduan": [
-                { kategori: "Bhabinkamtibmas", nama: "Bripka Diky (Wilayah Sungai Paduan)", telp: "081234567890", verified: "Verifikasi Polsek (Okt 2026)" },
-                { kategori: "Kepolisian", nama: "Piket Polsek Setempat", telp: "0561123456", verified: "Terverifikasi Resmi" },
-                { kategori: "Kesehatan", nama: "Puskesmas Pembantu Sungai Paduan", telp: "081987654321", verified: "Verifikasi Dinas Kesehatan" },
-                { kategori: "Darurat", nama: "Pemadam / Satgas Kebakaran Desa", telp: "081122334455", verified: "Verifikasi Kecamatan" },
-                { kategori: "Pemerintahan", nama: "Kantor Desa Sungai Paduan", telp: "0561654321", verified: "Terverifikasi Resmi" }
-            ],
-            "alur-bandung": [
-                { kategori: "Bhabinkamtibmas", nama: "Bripka Wayu (Wilayah Alur Bandung)", telp: "081298765432", verified: "Verifikasi Polsek (Okt 2026)" },
-                { kategori: "Kepolisian", nama: "Piket Polsek Setempat", telp: "0561123456", verified: "Terverifikasi Resmi" },
-                { kategori: "Kesehatan", nama: "Bidan Desa Alur Bandung", telp: "081333444555", verified: "Verifikasi Puskesmas" },
-                { kategori: "Pemerintahan", nama: "Kantor Desa Alur Bandung", telp: "0561789012", verified: "Terverifikasi Resmi" }
-            ],
-            "teluk-batang": [
-                { kategori: "Bhabinkamtibmas", nama: "Bripka Harli (Wilayah Teluk Batang)", telp: "081555666777", verified: "Verifikasi Polsek (Okt 2026)" },
-                { kategori: "Kesehatan", nama: "Puskesmas Teluk Batang", telp: "0561998877", verified: "Verifikasi Resmi" },
-                { kategori: "Darurat", nama: "Pos SAR / BPBD Terdekat", telp: "081999888777", verified: "Terverifikasi SAR" },
-                { kategori: "Pemerintahan", nama: "Kantor Kecamatan Teluk Batang", telp: "0561334455", verified: "Terverifikasi Resmi" }
-            ]
-        };
-
+        // Fungsi Memuat Kontak Berdasarkan Wilayah
         function loadContacts() {
-            const wilayah = document.getElementById('wilayah-select').value;
+            const wilayahSelect = document.getElementById('wilayah-select');
             const container = document.getElementById('contacts-list');
+            if (!wilayahSelect || !container) return;
+
+            const wilayah = wilayahSelect.value;
             const data = databaseKontak[wilayah] || [];
 
             let html = '';
@@ -231,7 +241,7 @@
             container.innerHTML = html;
         }
 
-        // AI Kreator Script Tetap Berjalan
+        // AI Kreator
         function generateAIContent(e) {
             e.preventDefault();
             const category = document.getElementById('ai-category').value;
@@ -262,6 +272,10 @@
         }
 
         async function loginWithGoogle() {
+            if (!supabaseClient) {
+                alert('Silakan masukkan SUPABASE_URL dan SUPABASE_ANON_KEY yang valid di dalam file index.html terlebih dahulu.');
+                return;
+            }
             const { data, error } = await supabaseClient.auth.signInWithOAuth({ provider: 'google' });
             if (error) alert('Gagal login: ' + error.message);
         }
