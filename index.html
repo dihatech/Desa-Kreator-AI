@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desa Kreator AI - Dari HP, Jadi Produktif</title>
+    <!-- Tailwind CSS untuk Desain Cepat & Responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Navbar -->
+    <header class="bg-emerald-600 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-md mx-auto px-4 py-3 flex justify-between items-center">
+            <div>
+                <h1 class="font-bold text-lg leading-tight">Desa Kreator AI</h1>
+                <p class="text-xs text-emerald-100">Dari HP, Jadi Produktif.</p>
+            </div>
+            <div id="auth-container">
+                <!-- Tombol Login akan diatur oleh JavaScript -->
+                <button onclick="loginWithGoogle()" class="bg-white text-emerald-700 text-xs font-semibold px-3 py-1.5 rounded-full shadow hover:bg-emerald-50 transition">
+                    Masuk
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="max-w-md mx-auto px-4 py-6 w-full space-y-6 flex-grow">
+        
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-br from-emerald-500 to-teal-700 text-white p-6 rounded-2xl shadow-lg text-center space-y-3">
+            <h2 class="text-2xl font-black leading-snug">Setiap Orang Punya Cerita.<br>Setiap Keterampilan Punya Peluang.</h2>
+            <p class="text-sm text-emerald-100">Pusat belajar, berkarya, berbagi, dan membuka peluang ekonomi warga berbasis teknologi AI.</p>
+            <div class="pt-2 flex flex-col gap-2">
+                <a href="#ai-kreator" class="bg-white text-emerald-800 font-bold py-2.5 px-4 rounded-xl shadow text-sm hover:bg-emerald-50 transition">
+                    ✨ Buka AI Kreator
+                </a>
+                <a href="#sos-darurat" class="bg-rose-600 text-white font-bold py-2 px-4 rounded-xl shadow text-sm hover:bg-rose-700 transition">
+                    🚨 SOS Kontak Penting
+                </a>
+            </div>
+        </section>
+
+        <!-- Menu Utama Singkat -->
+        <section class="grid grid-cols-2 gap-3">
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-1 hover:border-emerald-300 transition">
+                <span class="text-2xl">💡</span>
+                <h3 class="font-bold text-sm">AI Kreator</h3>
+                <p class="text-xs text-slate-500">Bikin ide, naskah & caption instan</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-1 hover:border-emerald-300 transition">
+                <span class="text-2xl">🎯</span>
+                <h3 class="font-bold text-sm">Misi Bulanan</h3>
+                <p class="text-xs text-slate-500">Ikuti misi, kumpulkan poin & badge</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-1 hover:border-emerald-300 transition">
+                <span class="text-2xl">🛒</span>
+                <h3 class="font-bold text-sm">Peluang Warga</h3>
+                <p class="text-xs text-slate-500">Jual produk, jasa & keterampilan</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col items-center text-center space-y-1 hover:border-emerald-300 transition">
+                <span class="text-2xl">🛡️</span>
+                <h3 class="font-bold text-sm">Aman Digital</h3>
+                <p class="text-xs text-slate-500">Detektif anti-penipuan online</p>
+            </div>
+        </section>
+
+        <!-- Status Pengguna / Profil Singkat (Tersembunyi jika belum login) -->
+        <section id="user-profile-section" class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 hidden">
+            <h3 class="font-bold text-sm text-slate-700 mb-1">Status Akun Anda</h3>
+            <p id="user-email" class="text-xs text-slate-500 mb-3">-</p>
+            <button onclick="logout()" class="text-xs text-rose-600 font-semibold hover:underline">Keluar Akun</button>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-400">
+        <p>Desa Kreator AI V1.2 • Belajar • Berkarya • Berpeluang</p>
+    </footer>
+
+    <!-- Skrip Konfigurasi Supabase -->
+    <script>
+        // MASUKKAN KREDENSIAL SUPABASE ANDA DI SINI
+        const SUPABASE_URL = 'https://wjeyyorrlryxpzjulsma.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_oOin7aQ9jNbb30S714VbZQ_AUuwjXTf';
+
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Fungsi Login Google
+        async function loginWithGoogle() {
+            const { data, error } = await supabaseClient.auth.signInWithOAuth({
+                provider: 'google',
+            });
+            if (error) {
+                alert('Gagal login: ' + error.message);
+            }
+        }
+
+        // Fungsi Logout
+        async function logout() {
+            await supabaseClient.auth.signOut();
+            location.reload();
+        }
+
+        // Cek Sesi Login Saat Halaman Dimuat
+        async function checkUserSession() {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            const authContainer = document.getElementById('auth-container');
+            const profileSection = document.getElementById('user-profile-section');
+            const userEmailText = document.getElementById('user-email');
+
+            if (session) {
+                authContainer.innerHTML = `<span class="text-xs bg-emerald-700 px-2.5 py-1 rounded-full text-white">Online</span>`;
+                profileSection.classList.remove('hidden');
+                userEmailText.innerText = session.user.email;
+            }
+        }
+
+        checkUserSession();
+    </script>
+</body>
+</html>
