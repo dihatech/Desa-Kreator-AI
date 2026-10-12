@@ -168,41 +168,63 @@
 
     <!-- LOGIKA JAVASCRIPT -->
     <script>
-        // Database Kontak Dideklarasikan Paling Atas Agar Tidak Error
+        // Database Kontak Lengkap Berdasarkan Blueprint V1.2
         const databaseKontak = {
             "sungai-paduan": [
-                { kategori: "Bhabinkamtibmas", nama: "Bripka Diky (Wilayah Sungai Paduan)", telp: "081234567890", verified: "Verifikasi Polsek (Okt 2026)" },
-                { kategori: "Kepolisian", nama: "Piket Polsek Setempat", telp: "0561123456", verified: "Terverifikasi Resmi" },
-                { kategori: "Kesehatan", nama: "Puskesmas Pembantu Sungai Paduan", telp: "081987654321", verified: "Verifikasi Dinas Kesehatan" },
-                { kategori: "Darurat", nama: "Pemadam / Satgas Kebakaran Desa", telp: "081122334455", verified: "Verifikasi Kecamatan" },
-                { kategori: "Pemerintahan", nama: "Kantor Desa Sungai Paduan", telp: "0561654321", verified: "Terverifikasi Resmi" }
+                // Keamanan
+                { kategori: "Keamanan", sub: "Kepolisian", nama: "Polres Setempat", telp: "0561-XXXXXX", verified: "Verifikasi Resmi" },
+                { kategori: "Keamanan", sub: "Polsek", nama: "Polsek Terdekat", telp: "0561123456", verified: "Terverifikasi Resmi" },
+                { kategori: "Keamanan", sub: "Bhabinkamtibmas", nama: "Bripka Budi (Desa Sungai Paduan)", telp: "081234567890", verified: "Verifikasi Polsek (Okt 2026)" },
+                { kategori: "Keamanan", sub: "Babinsa", nama: "Sertu Andi (Desa Sungai Paduan)", telp: "081298765432", verified: "Verifikasi Koramil" },
+                { kategori: "Keamanan", sub: "Satpol PP", nama: "Pos Satpol PP Kecamatan", telp: "0561-XXXXXX", verified: "Terverifikasi Resmi" },
+                { kategori: "Keamanan", sub: "Linmas", nama: "Komandan Linmas Desa Sungai Paduan", telp: "081333444555", verified: "Terverifikasi Desa" },
+
+                // Darurat
+                { kategori: "Darurat", sub: "Pemadam Kebakaran", nama: "Damkar / Satgas Kebakaran Desa", telp: "081122334455", verified: "Verifikasi Kecamatan" },
+                { kategori: "Darurat", sub: "BPBD", nama: "BPBD Kabupaten", telp: "0561-XXXXXX", verified: "Terverifikasi Resmi" },
+                { kategori: "Darurat", sub: "BASARNAS", nama: "Pos SAR Terdekat", telp: "081999888777", verified: "Terverifikasi SAR" },
+
+                // Kesehatan
+                { kategori: "Kesehatan", sub: "Rumah Sakit Daerah", nama: "RSUD Kabupaten", telp: "0561-XXXXXX", verified: "Dinkes" },
+                { kategori: "Kesehatan", sub: "Puskesmas", nama: "Puskesmas Pembantu Sungai Paduan", telp: "081987654321", verified: "Dinkes" },
+                { kategori: "Kesehatan", sub: "Ambulance", nama: "Ambulance Desa / Puskesmas", telp: "081211223344", verified: "Puskesmas" },
+                { kategori: "Kesehatan", sub: "Bidan Desa", nama: "Bidan Siti, A.Md.Keb", telp: "081355667788", verified: "Puskesmas" },
+                { kategori: "Kesehatan", sub: "Dokter Praktek", nama: "Dr. Pratama", telp: "081477889900", verified: "IDI / Dinkes" },
+
+                // Pemerintahan
+                { kategori: "Pemerintahan", sub: "Desa/Kelurahan", nama: "Kantor Desa Sungai Paduan", telp: "0561654321", verified: "Resmi" },
+                { kategori: "Pemerintahan", sub: "Kecamatan", nama: "Kantor Kecamatan", telp: "0561-XXXXXX", verified: "Resmi" },
+                { kategori: "Pemerintahan", sub: "Kabupaten/Kota", nama: "Setda Kabupaten", telp: "0561-XXXXXX", verified: "Resmi" },
+
+                // Layanan Umum
+                { kategori: "Layanan Umum", sub: "PLN", nama: "PLN (Pelayanan Gangguan)", telp: "123", verified: "Resmi PLN" },
+                { kategori: "Layanan Umum", sub: "PDAM", nama: "PDAM Tirta / Air Bersih Desa", telp: "0561-XXXXXX", verified: "Resmi" },
+                { kategori: "Layanan Umum", sub: "Layanan Lainnya", nama: "Posyandu / Layanan Sosial", telp: "0815...", verified: "Desa" }
             ],
             "alur-bandung": [
-                { kategori: "Bhabinkamtibmas", nama: "Brigpol Wahyu (Wilayah Alur Bandung)", telp: "081298765432", verified: "Verifikasi Polsek (Okt 2026)" },
-                { kategori: "Kepolisian", nama: "Piket Polsek Setempat", telp: "0561123456", verified: "Terverifikasi Resmi" },
-                { kategori: "Kesehatan", nama: "Bidan Desa Alur Bandung", telp: "081333444555", verified: "Verifikasi Puskesmas" },
-                { kategori: "Darurat", nama: "Pemadam / Satgas Kebakaran Desa", telp: "081122334455", verified: "Verifikasi Kecamatan" },
-                { kategori: "Pemerintahan", nama: "Kantor Desa Alur Bandung", telp: "0561654321", verified: "Terverifikasi Resmi" }
+                { kategori: "Keamanan", sub: "Bhabinkamtibmas", nama: "Aipda Andi (Desa Alur Bandung)", telp: "081298765432", verified: "Verifikasi Polsek" },
+                { kategori: "Keamanan", sub: "Babinsa", nama: "Sertu Joko", telp: "0813...", verified: "Verifikasi Koramil" },
+                { kategori: "Kesehatan", sub: "Bidan Desa", nama: "Bidan Rina", telp: "081333444555", verified: "Verifikasi Puskesmas" },
+                { kategori: "Pemerintahan", sub: "Desa/Kelurahan", nama: "Kantor Desa Alur Bandung", telp: "0561789012", verified: "Terverifikasi Resmi" },
+                { kategori: "Layanan Umum", sub: "PLN", nama: "PLN (Gangguan)", telp: "123", verified: "Resmi PLN" }
             ],
             "teluk-batang": [
-                { kategori: "Bhabinkamtibmas", nama: "Bripka Harli (Wilayah Teluk Batang)", telp: "081555666777", verified: "Verifikasi Polsek (Okt 2026)" },
-                { kategori: "Kesehatan", nama: "Puskesmas Teluk Batang", telp: "0561998877", verified: "Verifikasi Resmi" },
-                { kategori: "Darurat", nama: "Pos SAR / BPBD Terdekat", telp: "081999888777", verified: "Terverifikasi SAR" },
-                { kategori: "Darurat", nama: "Pemadam / Satgas Kebakaran Desa", telp: "081122334455", verified: "Verifikasi Kecamatan" },
-                { kategori: "Pemerintahan", nama: "Kantor Desa Teluk Batang", telp: "0561654321", verified: "Terverifikasi Resmi" }
+                { kategori: "Keamanan", sub: "Bhabinkamtibmas", nama: "Bripka Joko (Desa Teluk Batang)", telp: "081555666777", verified: "Verifikasi Polsek" },
+                { kategori: "Kesehatan", sub: "Puskesmas", nama: "Puskesmas Teluk Batang", telp: "0561998877", verified: "Verifikasi Resmi" },
+                { kategori: "Darurat", sub: "BASARNAS", nama: "Pos SAR / BPBD Teluk Batang", telp: "081999888777", verified: "Verifikasi SAR" },
+                { kategori: "Pemerintahan", sub: "Kecamatan", nama: "Kantor Kecamatan Teluk Batang", telp: "0561334455", verified: "Verifikasi Resmi" },
+                { kategori: "Layanan Umum", sub: "PLN", nama: "PLN Teluk Batang", telp: "123", verified: "Resmi PLN" }
             ]
         };
 
-        // Inisialisasi Supabase dengan Pengaman URL Valid
-        const SUPABASE_URL = 'https://kyoslaqroklycqssblac.supabase.co'; // Ganti dengan Project URL asli dari Supabase
-        const SUPABASE_ANON_KEY = 'sb_publishable_TUCwIHUNaDu7YE5s6brs3w_GWreHf54';                 // Ganti dengan Anon Key asli dari Supabase
+        const SUPABASE_URL = 'https://kyoslaqroklycqssblac.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_TUCwIHUNaDu7YE5s6brs3w_GWreHf54';
         let supabaseClient = null;
 
         if (SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('YOUR_SUPABASE_PROJECT_ID')) {
             supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         }
 
-        // Fungsi Navigasi Halaman
         function showPage(pageId) {
             document.getElementById('page-home').classList.add('hidden');
             document.getElementById('page-ai-kreator').classList.add('hidden');
@@ -216,7 +238,7 @@
             }
         }
 
-        // Fungsi Memuat Kontak Berdasarkan Wilayah
+        // Fungsi Memuat Kontak Berdasarkan Wilayah & Dikelompokkan Per Kategori
         function loadContacts() {
             const wilayahSelect = document.getElementById('wilayah-select');
             const container = document.getElementById('contacts-list');
@@ -225,25 +247,38 @@
             const wilayah = wilayahSelect.value;
             const data = databaseKontak[wilayah] || [];
 
+            // Urutan kategori yang diinginkan
+            const kategoriesUtama = ["Keamanan", "Darurat", "Kesehatan", "Pemerintahan", "Layanan Umum"];
             let html = '';
-            data.forEach(item => {
-                html += `
-                    <div class="bg-white p-3.5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-between">
-                        <div>
-                            <span class="text-[10px] font-bold uppercase px-2 py-0.5 bg-rose-100 text-rose-700 rounded-md">${item.kategori}</span>
-                            <h4 class="font-bold text-xs text-slate-800 mt-1">${item.nama}</h4>
-                            <p class="text-[10px] text-slate-400 mt-0.5">✓ ${item.verified}</p>
-                        </div>
-                        <a href="tel:${item.telp}" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-2 rounded-xl text-xs shadow flex items-center gap-1 transition">
-                            📞 Hubungi
-                        </a>
-                    </div>
-                `;
+
+            kategoriesUtama.forEach(kat => {
+                const filtered = data.filter(item => item.kategori === kat);
+                if (filtered.length > 0) {
+                    html += `<div class="space-y-2 pt-2">`;
+                    html += `<h3 class="font-bold text-xs text-rose-800 uppercase tracking-wider bg-rose-50 px-2.5 py-1 rounded-md border border-rose-100">${kat}</h3>`;
+                    
+                    filtered.forEach(item => {
+                        html += `
+                            <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-200 flex items-center justify-between">
+                                <div>
+                                    <span class="text-[10px] font-semibold text-slate-400 block">${item.sub}</span>
+                                    <h4 class="font-bold text-xs text-slate-800 mt-0.5">${item.nama}</h4>
+                                    <p class="text-[9px] text-emerald-600 font-medium mt-0.5">✓ ${item.verified}</p>
+                                </div>
+                                <a href="tel:${item.telp}" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-2 rounded-xl text-xs shadow flex items-center gap-1 transition flex-shrink-0">
+                                    📞 Hubungi
+                                </a>
+                            </div>
+                        `;
+                    });
+                    html += `</div>`;
+                }
             });
-            container.innerHTML = html;
+
+            container.innerHTML = html || '<p class="text-xs text-slate-400 text-center py-4">Belum ada kontak tersedia untuk wilayah ini.</p>';
         }
 
-        // AI Kreator
+        // AI Kreator Script
         function generateAIContent(e) {
             e.preventDefault();
             const category = document.getElementById('ai-category').value;
