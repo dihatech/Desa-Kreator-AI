@@ -168,56 +168,56 @@
 
     <!-- LOGIKA JAVASCRIPT -->
     <script>
-        // Database Kontak Lengkap Berdasarkan Blueprint V1.2
+        // Database Kontak Lengkap dengan Alamat & Tautan Google Maps
         const databaseKontak = {
             "sungai-paduan": [
                 // Keamanan
-                { kategori: "Keamanan", sub: "Kepolisian", nama: "Polres Setempat", telp: "0561-XXXXXX", verified: "Verifikasi Resmi" },
-                { kategori: "Keamanan", sub: "Polsek", nama: "Polsek Terdekat", telp: "0561123456", verified: "Terverifikasi Resmi" },
-                { kategori: "Keamanan", sub: "Bhabinkamtibmas", nama: "Bripka Budi (Desa Sungai Paduan)", telp: "081234567890", verified: "Verifikasi Polsek (Okt 2026)" },
-                { kategori: "Keamanan", sub: "Babinsa", nama: "Sertu Andi (Desa Sungai Paduan)", telp: "081298765432", verified: "Verifikasi Koramil" },
-                { kategori: "Keamanan", sub: "Satpol PP", nama: "Pos Satpol PP Kecamatan", telp: "0561-XXXXXX", verified: "Terverifikasi Resmi" },
-                { kategori: "Keamanan", sub: "Linmas", nama: "Komandan Linmas Desa Sungai Paduan", telp: "081333444555", verified: "Terverifikasi Desa" },
+                { kategori: "Keamanan", sub: "Kepolisian", nama: "Polres Setempat", telp: "0561-XXXXXX", alamat: "Jl. Bhayangkara Utama", mapUrl: "https://maps.google.com/?q=Polres", verified: "Verifikasi Resmi" },
+                { kategori: "Keamanan", sub: "Polsek", nama: "Polsek Terdekat", telp: "0561123456", alamat: "Jl. Raya Utama Desa", mapUrl: "https://maps.google.com/?q=Polsek", verified: "Terverifikasi Resmi" },
+                { kategori: "Keamanan", sub: "Bhabinkamtibmas", nama: "Bripka Budi (Desa Sungai Paduan)", telp: "081234567890", alamat: "Pos Polisi / Kantor Desa Sungai Paduan", mapUrl: "https://maps.google.com/?q=Kantor+Desa+Sungai+Paduan", verified: "Verifikasi Polsek (Okt 2026)" },
+                { kategori: "Keamanan", sub: "Babinsa", nama: "Sertu Andi (Desa Sungai Paduan)", telp: "081298765432", alamat: "Pos Koramil / Balai Desa", mapUrl: "https://maps.google.com/?q=Balai+Desa+Sungai+Paduan", verified: "Verifikasi Koramil" },
+                { kategori: "Keamanan", sub: "Satpol PP", nama: "Pos Satpol PP Kecamatan", telp: "0561-XXXXXX", alamat: "Kantor Kecamatan", mapUrl: "https://maps.google.com/?q=Kantor+Kecamatan", verified: "Terverifikasi Resmi" },
+                { kategori: "Keamanan", sub: "Linmas", nama: "Komandan Linmas Desa", telp: "081333444555", alamat: "Rt 01 / Dusun Sentral Desa Sungai Paduan", mapUrl: "https://maps.google.com/?q=Sungai+Paduan", verified: "Verifikasi Desa" },
 
                 // Darurat
-                { kategori: "Darurat", sub: "Pemadam Kebakaran", nama: "Damkar / Satgas Kebakaran Desa", telp: "081122334455", verified: "Verifikasi Kecamatan" },
-                { kategori: "Darurat", sub: "BPBD", nama: "BPBD Kabupaten", telp: "0561-XXXXXX", verified: "Terverifikasi Resmi" },
-                { kategori: "Darurat", sub: "BASARNAS", nama: "Pos SAR Terdekat", telp: "081999888777", verified: "Terverifikasi SAR" },
+                { kategori: "Darurat", sub: "Pemadam Kebakaran", nama: "Damkar / Satgas Kebakaran Desa", telp: "081122334455", alamat: "Garasi Pos Satgas Desa Sungai Paduan", mapUrl: "https://maps.google.com/?q=Sungai+Paduan", verified: "Verifikasi Kecamatan" },
+                { kategori: "Darurat", sub: "BPBD", nama: "BPBD Kabupaten", telp: "0561-XXXXXX", alamat: "Pusat Kabupaten", mapUrl: "https://maps.google.com/?q=BPBD", verified: "Verifikasi Resmi" },
+                { kategori: "Darurat", sub: "BASARNAS", nama: "Pos SAR Terdekat", telp: "081999888777", alamat: "Kawasan Pelabuhan / Pesisir", mapUrl: "https://maps.google.com/?q=BASARNAS", verified: "Verifikasi SAR" },
 
                 // Kesehatan
-                { kategori: "Kesehatan", sub: "Rumah Sakit Daerah", nama: "RSUD Kabupaten", telp: "0561-XXXXXX", verified: "Dinkes" },
-                { kategori: "Kesehatan", sub: "Puskesmas", nama: "Puskesmas Pembantu Sungai Paduan", telp: "081987654321", verified: "Dinkes" },
-                { kategori: "Kesehatan", sub: "Ambulance", nama: "Ambulance Desa / Puskesmas", telp: "081211223344", verified: "Puskesmas" },
-                { kategori: "Kesehatan", sub: "Bidan Desa", nama: "Bidan Siti, A.Md.Keb", telp: "081355667788", verified: "Puskesmas" },
-                { kategori: "Kesehatan", sub: "Dokter Praktek", nama: "Dr. Pratama", telp: "081477889900", verified: "IDI / Dinkes" },
+                { kategori: "Kesehatan", sub: "Rumah Sakit Daerah", nama: "RSUD Kabupaten", telp: "0561-XXXXXX", alamat: "Jl. Kesehatan No. 1 Kabupaten", mapUrl: "https://maps.google.com/?q=RSUD", verified: "Dinkes" },
+                { kategori: "Kesehatan", sub: "Puskesmas", nama: "Puskesmas Pembantu Sungai Paduan", telp: "081987654321", alamat: "Jl. Poros Desa Sungai Paduan", mapUrl: "https://maps.google.com/?q=Puskesmas+Sungai+Paduan", verified: "Dinkes" },
+                { kategori: "Kesehatan", sub: "Ambulance", nama: "Ambulance Desa / Puskesmas", telp: "081211223344", alamat: "Area Pustu Sungai Paduan", mapUrl: "https://maps.google.com/?q=Puskesmas+Sungai+Paduan", verified: "Puskesmas" },
+                { kategori: "Kesehatan", sub: "Bidan Desa", nama: "Bidan Siti, A.Md.Keb", telp: "081355667788", alamat: "Praktek Mandiri / Polindes Desa Sungai Paduan", mapUrl: "https://maps.google.com/?q=Polindes+Sungai+Paduan", verified: "Puskesmas" },
+                { kategori: "Kesehatan", sub: "Dokter Praktek", nama: "Dr. Pratama", telp: "081477889900", alamat: "Klinik Pratama Desa", mapUrl: "https://maps.google.com/?q=Sungai+Paduan", verified: "IDI / Dinkes" },
 
                 // Pemerintahan
-                { kategori: "Pemerintahan", sub: "Desa/Kelurahan", nama: "Kantor Desa Sungai Paduan", telp: "0561654321", verified: "Resmi" },
-                { kategori: "Pemerintahan", sub: "Kecamatan", nama: "Kantor Kecamatan", telp: "0561-XXXXXX", verified: "Resmi" },
-                { kategori: "Pemerintahan", sub: "Kabupaten/Kota", nama: "Setda Kabupaten", telp: "0561-XXXXXX", verified: "Resmi" },
+                { kategori: "Pemerintahan", sub: "Desa/Kelurahan", nama: "Kantor Desa Sungai Paduan", telp: "0561654321", alamat: "Jl. Utama Desa Sungai Paduan", mapUrl: "https://maps.google.com/?q=Kantor+Desa+Sungai+Paduan", verified: "Resmi" },
+                { kategori: "Pemerintahan", sub: "Kecamatan", nama: "Kantor Kecamatan", telp: "0561-XXXXXX", alamat: "Pusat Kecamatan Setempat", mapUrl: "https://maps.google.com/?q=Kantor+Kecamatan", verified: "Resmi" },
+                { kategori: "Pemerintahan", sub: "Kabupaten/Kota", nama: "Setda Kabupaten", telp: "0561-XXXXXX", alamat: "Pusat Pemerintahan Kabupaten", mapUrl: "https://maps.google.com/?q=Kantor+Bupati", verified: "Resmi" },
 
                 // Layanan Umum
-                { kategori: "Layanan Umum", sub: "PLN", nama: "PLN (Pelayanan Gangguan)", telp: "123", verified: "Resmi PLN" },
-                { kategori: "Layanan Umum", sub: "PDAM", nama: "PDAM Tirta / Air Bersih Desa", telp: "0561-XXXXXX", verified: "Resmi" },
-                { kategori: "Layanan Umum", sub: "Layanan Lainnya", nama: "Posyandu / Layanan Sosial", telp: "0815...", verified: "Desa" }
+                { kategori: "Layanan Umum", sub: "PLN", nama: "PLN (Pelayanan Gangguan)", telp: "123", alamat: "Sub Unit Pelayanan PLN Terdekat", mapUrl: "https://maps.google.com/?q=PLN", verified: "Resmi PLN" },
+                { kategori: "Layanan Umum", sub: "PDAM", nama: "PDAM Tirta / Air Bersih Desa", telp: "0561-XXXXXX", alamat: "Instalasi Air Desa Sungai Paduan", mapUrl: "https://maps.google.com/?q=Sungai+Paduan", verified: "Resmi" },
+                { kategori: "Layanan Umum", sub: "Layanan Lainnya", nama: "Posyandu / Layanan Sosial", telp: "0815...", alamat: "Balai Dusun Desa Sungai Paduan", mapUrl: "https://maps.google.com/?q=Sungai+Paduan", verified: "Desa" }
             ],
             "alur-bandung": [
-                { kategori: "Keamanan", sub: "Bhabinkamtibmas", nama: "Aipda Andi (Desa Alur Bandung)", telp: "081298765432", verified: "Verifikasi Polsek" },
-                { kategori: "Keamanan", sub: "Babinsa", nama: "Sertu Joko", telp: "0813...", verified: "Verifikasi Koramil" },
-                { kategori: "Kesehatan", sub: "Bidan Desa", nama: "Bidan Rina", telp: "081333444555", verified: "Verifikasi Puskesmas" },
-                { kategori: "Pemerintahan", sub: "Desa/Kelurahan", nama: "Kantor Desa Alur Bandung", telp: "0561789012", verified: "Terverifikasi Resmi" },
-                { kategori: "Layanan Umum", sub: "PLN", nama: "PLN (Gangguan)", telp: "123", verified: "Resmi PLN" }
+                { kategori: "Keamanan", sub: "Bhabinkamtibmas", nama: "Aipda Andi (Desa Alur Bandung)", telp: "081298765432", alamat: "Kantor Desa Alur Bandung", mapUrl: "https://maps.google.com/?q=Kantor+Desa+Alur+Bandung", verified: "Verifikasi Polsek" },
+                { kategori: "Keamanan", sub: "Babinsa", nama: "Sertu Joko", telp: "0813...", alamat: "Pos Koramil Alur Bandung", mapUrl: "https://maps.google.com/?q=Alur+Bandung", verified: "Verifikasi Koramil" },
+                { kategori: "Kesehatan", sub: "Bidan Desa", nama: "Bidan Rina", telp: "081333444555", alamat: "Polindes Alur Bandung", mapUrl: "https://maps.google.com/?q=Alur+Bandung", verified: "Verifikasi Puskesmas" },
+                { kategori: "Pemerintahan", sub: "Desa/Kelurahan", nama: "Kantor Desa Alur Bandung", telp: "0561789012", alamat: "Jl. Desa Alur Bandung", mapUrl: "https://maps.google.com/?q=Kantor+Desa+Alur+Bandung", verified: "Terverifikasi Resmi" },
+                { kategori: "Layanan Umum", sub: "PLN", nama: "PLN (Gangguan)", telp: "123", alamat: "Sub Unit Terdekat", mapUrl: "https://maps.google.com/?q=PLN", verified: "Resmi PLN" }
             ],
             "teluk-batang": [
-                { kategori: "Keamanan", sub: "Bhabinkamtibmas", nama: "Bripka Joko (Desa Teluk Batang)", telp: "081555666777", verified: "Verifikasi Polsek" },
-                { kategori: "Kesehatan", sub: "Puskesmas", nama: "Puskesmas Teluk Batang", telp: "0561998877", verified: "Verifikasi Resmi" },
-                { kategori: "Darurat", sub: "BASARNAS", nama: "Pos SAR / BPBD Teluk Batang", telp: "081999888777", verified: "Verifikasi SAR" },
-                { kategori: "Pemerintahan", sub: "Kecamatan", nama: "Kantor Kecamatan Teluk Batang", telp: "0561334455", verified: "Verifikasi Resmi" },
-                { kategori: "Layanan Umum", sub: "PLN", nama: "PLN Teluk Batang", telp: "123", verified: "Resmi PLN" }
+                { kategori: "Keamanan", sub: "Bhabinkamtibmas", nama: "Bripka Joko (Desa Teluk Batang)", telp: "081555666777", alamat: "Polsek Teluk Batang", mapUrl: "https://maps.google.com/?q=Polsek+Teluk+Batang", verified: "Verifikasi Polsek" },
+                { kategori: "Kesehatan", sub: "Puskesmas", nama: "Puskesmas Teluk Batang", telp: "0561998877", alamat: "Jl. Raya Teluk Batang", mapUrl: "https://maps.google.com/?q=Puskesmas+Teluk+Batang", verified: "Verifikasi Resmi" },
+                { kategori: "Darurat", sub: "BASARNAS", nama: "Pos SAR / BPBD Teluk Batang", telp: "081999888777", alamat: "Pelabuhan Teluk Batang", mapUrl: "https://maps.google.com/?q=Teluk+Batang", verified: "Verifikasi SAR" },
+                { kategori: "Pemerintahan", sub: "Kecamatan", nama: "Kantor Kecamatan Teluk Batang", telp: "0561334455", alamat: "Pusat Kecamatan Teluk Batang", mapUrl: "https://maps.google.com/?q=Kecamatan+Teluk+Batang", verified: "Terverifikasi Resmi" },
+                { kategori: "Layanan Umum", sub: "PLN", nama: "PLN Teluk Batang", telp: "123", alamat: "Kantor PLN Teluk Batang", mapUrl: "https://maps.google.com/?q=PLN+Teluk+Batang", verified: "Resmi PLN" }
             ]
         };
 
-        const SUPABASE_URL = 'https://kyoslaqroklycqssblac.supabase.co';
+        const SUPABASE_URL = 'https://kyoslaqroklycqssblac.supabase.cov';
         const SUPABASE_ANON_KEY = 'sb_publishable_TUCwIHUNaDu7YE5s6brs3w_GWreHf54';
         let supabaseClient = null;
 
@@ -238,7 +238,7 @@
             }
         }
 
-        // Fungsi Memuat Kontak Berdasarkan Wilayah & Dikelompokkan Per Kategori
+        // Fungsi Memuat Kontak Lengkap dengan Alamat dan Tautan Peta
         function loadContacts() {
             const wilayahSelect = document.getElementById('wilayah-select');
             const container = document.getElementById('contacts-list');
@@ -247,27 +247,37 @@
             const wilayah = wilayahSelect.value;
             const data = databaseKontak[wilayah] || [];
 
-            // Urutan kategori yang diinginkan
             const kategoriesUtama = ["Keamanan", "Darurat", "Kesehatan", "Pemerintahan", "Layanan Umum"];
             let html = '';
 
             kategoriesUtama.forEach(kat => {
                 const filtered = data.filter(item => item.kategori === kat);
                 if (filtered.length > 0) {
-                    html += `<div class="space-y-2 pt-2">`;
-                    html += `<h3 class="font-bold text-xs text-rose-800 uppercase tracking-wider bg-rose-50 px-2.5 py-1 rounded-md border border-rose-100">${kat}</h3>`;
+                    html += `<div class="space-y-2.5 pt-2">`;
+                    html += `<h3 class="font-bold text-xs text-rose-800 uppercase tracking-wider bg-rose-50 px-2.5 py-1.5 rounded-md border border-rose-100 flex items-center justify-between"><span>📌 ${kat}</span></h3>`;
                     
                     filtered.forEach(item => {
                         html += `
-                            <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-200 flex items-center justify-between">
-                                <div>
-                                    <span class="text-[10px] font-semibold text-slate-400 block">${item.sub}</span>
-                                    <h4 class="font-bold text-xs text-slate-800 mt-0.5">${item.nama}</h4>
-                                    <p class="text-[9px] text-emerald-600 font-medium mt-0.5">✓ ${item.verified}</p>
+                            <div class="bg-white p-3.5 rounded-xl shadow-sm border border-slate-200 space-y-2">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <span class="text-[10px] font-semibold text-rose-600 block">${item.sub}</span>
+                                        <h4 class="font-bold text-xs text-slate-900 mt-0.5">${item.nama}</h4>
+                                    </div>
+                                    <span class="text-[9px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-medium">✓ ${item.verified}</span>
                                 </div>
-                                <a href="tel:${item.telp}" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-2 rounded-xl text-xs shadow flex items-center gap-1 transition flex-shrink-0">
-                                    📞 Hubungi
-                                </a>
+                                <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded-lg border border-slate-100 flex items-start gap-1.5">
+                                    <span class="mt-0.5">📍</span>
+                                    <span>${item.alamat}</span>
+                                </div>
+                                <div class="flex items-center gap-2 pt-1">
+                                    <a href="tel:${item.telp}" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-3 rounded-xl text-xs shadow text-center flex items-center justify-center gap-1 transition">
+                                        📞 ${item.telp}
+                                    </a>
+                                    <a href="${item.mapUrl}" target="_blank" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2 px-3 rounded-xl text-xs border border-slate-300 text-center flex items-center justify-center gap-1 transition">
+                                        🗺️ Map
+                                    </a>
+                                </div>
                             </div>
                         `;
                     });
